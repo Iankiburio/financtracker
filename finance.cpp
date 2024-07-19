@@ -80,7 +80,6 @@ public:
 int main() {
     ExpenseTracker tracker;
     int choice;
-
     while (true) {
         cout << "\nExpense Tracker Menu:" << endl;
         cout << "1. Add Expense" << endl;
@@ -90,40 +89,30 @@ int main() {
         cout << "5. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
-
         cin.ignore();
-
-        // Validate input
         while (cin.fail()) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Invalid input. Please enter a number: ";
             cin >> choice;
         }
-
         switch (choice) {
             case 1: {
                 double amount;
                 string category, date;
-
                 cout << "Enter amount: ";
                 cin >> amount;
-
-                // Validate input for amount
                 while (cin.fail()) {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "Invalid input. Please enter a number: ";
                     cin >> amount;
                 }
-
                 cout << "Enter category: ";
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 getline(cin, category);
-
                 cout << "Enter date (YYYY-MM-DD): ";
                 getline(cin, date);
-
                 tracker.addExpense(amount, category, date);
                 break;
             }
@@ -135,15 +124,12 @@ int main() {
                 tracker.viewExpenses();
                 cout << "Enter index to delete: ";
                 cin >> index;
-
-                // Validate input
                 while (cin.fail()) {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "Invalid input. Please enter a number: ";
                     cin >> index;
                 }
-
                 tracker.deleteExpense(index);
                 break;
             }
